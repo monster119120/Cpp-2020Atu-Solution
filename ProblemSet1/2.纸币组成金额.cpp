@@ -8,62 +8,63 @@ int main(int argc, char const* argv[])
     cin >> n;
     /*** Your code here ***/
     // This array stores value of first set currency
-    int a1[] = { 1,5,10,20,50 }; 
+    int money1[] = { 50,20,10,5,1 };
 
-    
-    // how many paper money we need using exhaustion
-    int amountexhaustion1 = n;
+    // 1. how many paper money we need using exhaustion
+    int min_number_exhaustion1 = n;
 
-    for (int x0 = 0; x0 < n; x0++) {
-        for (int x1 = 0; x1 < n; x1++) {
-            for (int x2 = 0; x2 < n; x2++) {
-                for (int x3 = 0; x3 < n; x3++) {
-                    for (int x4 = 0; x4 < n; x4++) {
-                        if (x0 * a1[0] + x1 * a1[1] + x2 * a1[2] + x3 * a1[3] + x4 * a1[4] == n && amountexhaustion1 > x0 + x1 + x2 + x3 + x4)
-                            amountexhaustion1 = x0 + x1 + x2 + x3 + x4;
-                    }
+    for (int x0 = 0; x0 < n / money1[0] + 1; x0++) {
+        for (int x1 = 0; x1 < (n - x0 * money1[0]) / money1[1] + 1; x1++) {
+            for (int x2 = 0; x2 < (n - x0 * money1[0] - x1 * money1[1]) / money1[2] + 1; x2++) {
+                for (int x3 = 0; x3 < (n - x0 * money1[0] - x1 * money1[1] - x2 * money1[2]) / money1[3] + 1; x3++) {
+                    int x4 = n - x0 * money1[0] - x1 * money1[1] - x2 * money1[2] - x3 * money1[3];
+                    if (x0 * money1[0] + x1 * money1[1] + x2 * money1[2] + x3 * money1[3] + x4 * money1[4] == n && min_number_exhaustion1 > x0 + x1 + x2 + x3 + x4)
+                        min_number_exhaustion1 = x0 + x1 + x2 + x3 + x4;
                 }
             }
         }
     }
 
-    // how many paper money we need using greedy
-    int amountgreedy1 = 0;
-    
+    // 2. how many paper money we need using greedy
+    int min_number_greedy1 = 0;
+
     int value1 = n;
-    for (int i = 4; i >= 0; i--) {
-        while (value1 >= a1[i]) {
-            amountgreedy1++;
-            value1 -= a1[i];
+    for (int i = 0; i < 5; i++) {
+        while (value1 >= money1[i]) {
+            min_number_greedy1++;
+            value1 -= money1[i];
         }
     }
 
     // This array stores value of second set currency
-    int a2[] = {1, 5, 16, 23, 33};
+    int money2[] = { 33, 23, 16, 5, 1 };
 
-    int amountexhaustion2 = n;
-    for (int x0 = 0; x0 < n; x0++) {
-        for (int x1 = 0; x1 < n; x1++) {
-            for (int x2 = 0; x2 < n; x2++) {
-                for (int x3 = 0; x3 < n; x3++) {
-                    for (int x4 = 0; x4 < n; x4++) {
-                        if (x0 * a2[0] + x1 * a2[1] + x2 * a2[2] + x3 * a2[3] + x4 * a2[4] == n && amountexhaustion2 > x0 + x1 + x2 + x3 + x4)
-                            amountexhaustion2 = x0 + x1 + x2 + x3 + x4;
-                    }
+    // 3. how many paper money we need using exhaustion
+    int min_number_exhaustion2 = n;
+
+    for (int x0 = 0; x0 < n / money2[0] + 1; x0++) {
+        for (int x1 = 0; x1 < (n - x0 * money2[0]) / money2[1] + 1; x1++) {
+            for (int x2 = 0; x2 < (n - x0 * money2[0] - x1 * money2[1]) / money2[2] + 1; x2++) {
+                for (int x3 = 0; x3 < (n - x0 * money2[0] - x1 * money2[1] - x2 * money2[2]) / money2[3] + 1; x3++) {
+                    int x4 = n - x0 * money2[0] - x1 * money2[1] - x2 * money2[2] - x3 * money2[3];
+                    if (x0 * money2[0] + x1 * money2[1] + x2 * money2[2] + x3 * money2[3] + x4 * money2[4] == n && min_number_exhaustion2 > x0 + x1 + x2 + x3 + x4)
+                        min_number_exhaustion2 = x0 + x1 + x2 + x3 + x4;
                 }
             }
         }
     }
 
-    int amountgreedy2 = 0;
+    // 4. how many paper money we need using greedy
+    int min_number_greedy2 = 0;
+
     int value2 = n;
-    for (int i = 4; i >= 0; i--) {
-        while (value2 >= a2[i]) {
-            amountgreedy2++;
-            value2 -= a2[i];
+    for (int i = 0; i < 5; i++) {
+        while (value2 >= money2[i]) {
+            min_number_greedy2++;
+            value2 -= money2[i];
         }
     }
-    cout << amountexhaustion1<< " " << amountgreedy1 << amountexhaustion2<< " " << amountgreedy2 << endl;
+    cout << min_number_exhaustion1 << " " << min_number_greedy1 << " " << min_number_exhaustion2 << " " << min_number_greedy2 << endl;
     /******** End *********/
 
     return 0;
