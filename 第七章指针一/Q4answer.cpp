@@ -5,7 +5,7 @@ int main()
 {
     /*Start your code here*/
     char str[100] = { '\0' };
-    cin >> str;
+    cin.getline(str,80);
     int key[] = { 8,7,3,4,9,6,2 };
 
     char ciphertext[100] = { '\0' };

@@ -4,8 +4,19 @@ using namespace std;
 
 int main()
 {
-	double tableValue[20] = { 39.4 ,3.94,0.394,0.0394 };
-	char table[20][20] = { "meters","decimeters","centimeters","millimeters" };
+	double tableValue[3][20] = { 
+		{39.4 ,3.94,0.394,0.0394,39.4 ,3.94,0.394,0.0394},
+		{1.0936, 0.10936,0.010936, 0.0010936,1.0936, 0.10936,0.010936, 0.0010936},
+		{3.28, 0.328,0.0328,0.00328, 3.28, 0.328,0.0328,0.00328,},
+	 };
+	char tableCN[20][20] = {
+		"meters","decimeters","centimeters","millimeters",
+		"meter","decimeter","centimeter","millimeter",
+	};
+	char tableUK[3][20]={
+		"inches","yards","feet"
+	};
+	
 	char arr[100];
 
 	char choice = 'y';
@@ -39,9 +50,17 @@ int main()
 
 
 		for (int i = 0; i < 5; i++) {
-			if (strcmp(word[6], table[i]) == 0)
+			if (strcmp(word[6], tableCN[i]) == 0)
 			{
-				cout << atoi(word[5]) * tableValue[i] << endl;
+				for(int k=0;k<3;k++){
+					if(strcmp(word[2], tableUK[k])==0)
+					{
+                        double result= tableValue[k][i]*atoi(word[5]);
+						cout <<  result  << endl;
+						break;	
+					}
+				}
+				break;
 			}
 		}
 
