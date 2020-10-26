@@ -26,8 +26,8 @@ void deletechar(char* str1, const char* str2) {
 int main() {
 	char str1[80] = { '\0' };
 	char str2[80] = { '\0' };
-	cin >> str1;
-	cin >> str2;
+	cin.getline(str1,80);
+    cin.getline(str2,80);
 	deletechar(str1, str2);
 
 	cout << str1 << endl;

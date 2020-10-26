@@ -9,7 +9,7 @@ int main()
     cin >> n;
     /*Start your code here*/
     for (int i = 0; i < n; i++) {
-        cin >> buf[i];
+        cin.getline(buf[i],80);
     }
     cin >> ch;
     for (int i = 0; i < n; i++) {
