@@ -7,7 +7,7 @@ int main()
 {
 	char str[80];
 	char invalid[10] = ",.\" @#$";
-	cin.get(str,80);
+	cin.getline(str,80);
 	for (int i = 0; i < strlen(str); i++) {
 		if(!(str[i] == ',' ||
 			str[i] == '.' ||
@@ -61,7 +61,17 @@ int main()
 				}
 			}
 			else if (str[i] == 'D' || str[i] == 'd') {
-
+				for (int j = strlen(str) - 1; j > i; j--) {
+					if (str[j] == '2') {
+						rightIndex = j;
+						break;
+					}
+				}
+				if (rightIndex != -1) {
+					for (int k = rightIndex + 1; str[k-1] != '\0'; k++) {
+						str[i-1 + k - rightIndex] = str[k];
+					}
+				}
 			}
 		}
 	}
