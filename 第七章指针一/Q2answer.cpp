@@ -1,50 +1,34 @@
+
 #include <iostream>
 using namespace std;
 
 int main()
 {
+    /*Start your code here*/
+	char* arr=new char[100];
+	char** word=new char*[10];
+	char *order=new char[10];
+	int i,j,cnt=0;
+    for(i=0;i<10;i++) word[i]=new char[50];
+	cin.getline(arr, 100);
+	cin.getline(order,10);
+	i=0;
+    while (arr[i]!= '\0')
+    {
+        while (arr[i]==' ')   ++i; //跳过空白字符
+        if (arr[i] != '\0')
+        {   ++cnt;	j=0;	//找到一个单词
+	        while (!isspace(arr[i]) && arr[i] != '\0')
+                word[cnt-1][j]=arr[i],++i,j++;
+            word[cnt-1][j]='\0';
+        }
+    }
+    cout<<cnt<<endl;
+    for(i=0;order[i]!='\0';i++)
+        cout<<word[order[i]-'0']<<' ';
+    for(i=0;i<cnt;i++) delete []word[i];
+    delete []arr;delete []order;delete []word;
 
-	char arr[100];
-	char* sentence = arr;
-	int isSpace = 1;
-	
-	int wordCount = 0;
-	char* word[50];
-	int order[50];
-	int len;
-
-
-	cin.get(arr, 100);
-	cin >> len;
-
-	int j = 0;
-	word[j] = sentence;
-	for (int i = 0; '\0' != sentence[i]; i++)
-	{
-		if (' ' == sentence[i])
-		{
-			isSpace = 1;
-			word[++j] = (sentence + i + 1);
-			sentence[i] = '\0';
-		}
-		else if (isSpace == 1)
-		{
-			isSpace = 0;
-			wordCount++;
-		}
-	}
-	cout << wordCount << endl;
-
-	for (int i = 0; i < wordCount; i++) {
-		order[i] = len % 10;
-		len /= 10;
-	}
-
-	for (int i = wordCount - 1; i >= 0; i--) {
-		cout << word[i];
-        if(i!=0)
-            cout<<" ";
-	}
-
-	return 0;
+    /*end your code*/
+    return 0;
 }

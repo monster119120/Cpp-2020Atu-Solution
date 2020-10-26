@@ -9,17 +9,21 @@ int main()
     cin >> str1;
     cin >> str2;
 
-    int i = 0;
-    while (str1[i] != '\0' && str2[i] != '\0') {
+    /*Start your code here*/
+
+
+    char *i=str1;
+    while (*i != '\0' && *(str2+(i-str1)) != '\0') {
         
-        char tmp = str1[i];
-        str1[i] = str2[i];
-        str2[i] = tmp;
+        char tmp = *i;
+        *i = *(str2+(i-str1));
+        *(str2+(i-str1)) =tmp;
         i++;
     }
     
     cout << str1 << endl;
     cout << str2 << endl;
 
+    /*end your code*/
     return 0;
 }
