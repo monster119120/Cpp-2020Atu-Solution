@@ -8,7 +8,8 @@ using namespace std;
 class PersonScore
 {
 public:
-    PersonScore(string i="00000000", string n="name", int m=0, int e=0, int c=0);
+    PersonScore(char* i=NULL, char* n=NULL, int m=0, int e=0, int c=0);
+    ~PersonScore();
     void GiveValue(int m, int e, int c);
     void Display();
     int GetHigh();
@@ -18,8 +19,8 @@ public:
     bool isCSPass();
 
 private:
-    string id;
-    string name;
+    char id[80];
+    char name[80];
     int math;
     int English;
     int CS;

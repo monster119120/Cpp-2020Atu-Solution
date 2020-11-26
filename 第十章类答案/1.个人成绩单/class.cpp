@@ -3,8 +3,33 @@
 using namespace std;
 
 
-PersonScore::PersonScore(string i, string n, int m, int e, int c){
-    id = i;    name = n;    math = m;    English = e;  CS = c;
+PersonScore::PersonScore(char* i, char* n, int m, int e, int c) {
+    if (i==NULL){
+        char str[] = "00000000";
+        strcpy(id, str);
+    }
+    else {
+        strcpy(id, i);
+    }
+
+
+    if(n == NULL) {
+        char str[] = "name";
+        strcpy(name, str);
+    }
+    else
+    {
+        strcpy(name, n);
+    }
+
+
+    math = m;   
+    English = e;  
+    CS = c;
+}
+
+PersonScore::~PersonScore(){
+    
 }
 
 void PersonScore::GiveValue(
