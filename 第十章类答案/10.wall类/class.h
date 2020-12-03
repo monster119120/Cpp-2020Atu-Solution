@@ -1,7 +1,7 @@
 #include <iostream>
 #include  <stdlib.h>
-#ifndef UNTITLED3_CLASS_H
-#define UNTITLED3_CLASS_H
+#ifndef CLASS_H
+#define CLASS_H
 
 //-------class declaration--------
 class  wall
@@ -14,7 +14,7 @@ public:
     wall();
     void set(int new_length, int new_width);
     int get_area();
-    int get_extra();//inline function
+    int get_extra();
 };
 
-#endif //UNTITLED3_CLASS_H
+#endif //CLASS_H
