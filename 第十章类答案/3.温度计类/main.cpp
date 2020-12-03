@@ -9,6 +9,7 @@ int main()
     int T;
     double temp;
     cin >> T;
+    cin >> temp;
     Thermometer thermometer(temp);
     for (int i = 0; i < T; i++) {
         char tmp;

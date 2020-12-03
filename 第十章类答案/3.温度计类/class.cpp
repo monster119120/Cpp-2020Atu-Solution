@@ -10,7 +10,7 @@ Thermometer::~Thermometer() {
 }
 
 Thermometer::Thermometer(double temp):tempCelsius(temp){
-
+    this->tempFahrenheit = 32.0 + tempCelsius*1.8;
 }
 
 // set temperature
