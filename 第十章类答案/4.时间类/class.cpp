@@ -1,41 +1,68 @@
-#include <iostream>
 #include "class.h"
-
-Clock Time(Clock& c1, Clock& c2){
-    // TODO
-    int seconds1 = c1.get_second() + c1.get_minute()*60+ c1.get_hour()*3600;
-    int seconds2 = c2.get_second() + c2.get_minute()*60+ c2.get_hour()*3600;
-
-    int remain_seconds = abs(seconds1-seconds2);
-    int new_hour = remain_seconds/3600;
-    remain_seconds %= 3600;
-    int new_minute = remain_seconds/60;
-    remain_seconds %= 60;
-    int new_second = remain_seconds;
-
-    Clock res;
-    res.SetTime(new_hour, new_minute, new_second);
-    return res;
-}
+#include <iostream>
 
 using namespace std;
 
-int main(){
-    // TODO
-    Clock c1;
-    Clock c2;
-    char c = ':';
-    int h1, m1, s1;
-    int h2, m2, s2;
+//TODO
 
-    cin>>h1>>c>>m1>>c>>s1;
-    c1.SetTime(h1, m1, s1);
+Clock::Clock() {
+    hour = 0;
+    minute = 0;
+    second = 0;
+}
 
-    cin>>h2>>c>>m2>>c>>s2;
-    c2.SetTime(h2, m2, s2);
+Clock::~Clock() {
 
-    Clock diff =  Time(c1, c2);
-    diff.DisplayTime();
+}
 
-    return 0;
+int Clock::get_hour() {
+    return hour;
+}
+
+int Clock::get_minute() {
+    return minute;
+}
+
+int Clock::get_second() {
+    return second;
+}
+
+void Clock::DisplayTime() {
+    char display[20] = { '\0' };
+    if (hour > 10) {
+        display[0] = hour / 10 + '0';
+        display[1] = hour % 10 + '0';
+    }
+    else {
+        display[0] = '0';
+        display[1] = hour + '0';
+    }
+    display[2] = ':';
+
+    if (minute > 10) {
+        display[3] = minute / 10 + '0';
+        display[4] = minute % 10 + '0';
+    }
+    else {
+        display[3] = '0';
+        display[4] = minute + '0';
+    }
+    display[5] = ':';
+
+    if (second > 10) {
+        display[6] = second / 10 + '0';
+        display[7] = second % 10 + '0';
+    }
+    else {
+        display[7] = second + '0';
+        display[6] = '0';
+    }
+    display[8] = '\0';
+    cout << display << endl;
+}
+
+void Clock::SetTime(int h, int m, int s) {
+    hour = h;
+    minute = m;
+    second = s;
 }
