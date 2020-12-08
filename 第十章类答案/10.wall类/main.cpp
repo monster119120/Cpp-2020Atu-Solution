@@ -11,6 +11,10 @@ int main(){
     int length, width;
     cin>>length>>width;
     small.set(length, width);           //assigning values
+    
+    cin>>length>>width;
+    medium.set(length, width);
+    
     cin>>length>>width;
     large.set(length, width);
 
