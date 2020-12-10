@@ -25,11 +25,13 @@ int String::length() {
     return myLen;
 }
 
-String String::substr(int start, int n) {
-    char *str = new char[n+1];
-    for (int i = 0; i <  + n ; ++i) {
+String String::substr(int start, int end) {
+    char *str = new char[end-start+2];
+    for (int i = 0; i < end-start+1 ; ++i) {
         str[i] = this->myStr[i+start];
     }
+
+    str[end-start+1] = '\0';
 
     String res(str);
 

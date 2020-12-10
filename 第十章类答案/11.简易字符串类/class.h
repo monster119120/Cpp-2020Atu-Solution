@@ -19,8 +19,8 @@ public:
     ~String();
     // 0:获取字符串长度
     int length();
-    // 1:求子字符串[start,start+n-1]
-    String substr(int start, int n);
+    // 1:求子字符串[start,end]
+    String substr(int start, int end);
     // 2:查找首次出现字符c的位置
     int find_first_of(char c);
     // 3:在index处添加字符c

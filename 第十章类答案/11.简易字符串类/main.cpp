@@ -17,9 +17,9 @@ int main() {
 //                cout<<str.length()<<endl;
                 break;
             case '1':
-                int start, n;
-                cin>>start>>n;
-                str.substr(start,n-start+1).printStr();
+                int start, end;
+                cin>>start>>end;
+                str.substr(start,end).printStr();
                 break;
             case '2':
                 char find_char;
