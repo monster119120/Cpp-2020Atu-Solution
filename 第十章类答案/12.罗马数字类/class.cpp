@@ -50,94 +50,37 @@ int RomanWithInt::RomanNumToDex(char *str)
 /*num:十进制数,rom:目标ROMAN串储放地址*/
 void RomanWithInt::DexToRomanNum(int num)
 {
-    char rom[80];
-    int cont,i,r = num;
-    char *offset = rom;
-    if(cont=r/1000) { /*从最大起,求出个数*/
-        memset(offset,'M',cont);
-        offset += cont;
-        r = r%1000; /*用余数再计算下一级*/
+    char * ret = NULL;
+    if (num <= 0 || num > 3999) return;
+    ret = (char *) malloc (sizeof(char) * 16);
+    if (ret == NULL) {
+        printf("申请内存出错");
+        exit(0);
     }
-    /*以下方法同上*/
-    if(cont=r/500)  {
-        if(i=cont>>2)  {
-            while(i>0) {/*超过四个就按the Subtraction Law进行转换*/
-                memcpy(offset,"DM",2);
-                offset += 2;
-                i--;
-            }
-            cont = cont%4;
+    ret[15] = 0; // memset(ret, 0, 16);
+
+    char Rome[] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+    char i = 14, j = 0, m = 0;
+
+    while(num) {
+        m = num % 10;
+        num /= 10;
+        while (1) {
+            if (m == 9) {ret[i--] = Rome[j+2]; m = 1;}
+            else if (m == 8) {ret[i--] = Rome[j]; m--;}
+            else if (m == 7) {ret[i--] = Rome[j]; m--;}
+            else if (m == 6) {ret[i--] = Rome[j]; m--;}
+            else if (m == 5) {ret[i--] = Rome[j+1]; break;}
+            else if (m == 4) {ret[i--] = Rome[j+1]; m=1;}
+            else if (m == 3) {ret[i--] = Rome[j]; m--;}
+            else if (m == 2) {ret[i--] = Rome[j]; m--;}
+            else if (m == 1) {ret[i--] = Rome[j]; break;}
+            else break;
         }
-        memset(offset,'D',cont);
-        offset += cont;
-        r = r%500;
+        j += 2;
     }
-    if(cont=r/100)  {
-        if(i=cont>>2)   {
-            while(i>0) {
-                memcpy(offset,"CD",2);
-                offset += 2;
-                i--;
-            }
-            cont = cont%4;
-        }
-        memset(offset,'C',cont);
-        offset += cont;
-        r = r%100;
-    }
-    if(cont=r/50) {
-        if(i=cont>>2) {
-            while(i>0)  {
-                memcpy(offset,"LC",2);
-                offset += 2;
-                i--;
-            }
-            cont = cont%4;
-        }
-        memset(offset,'L',cont);
-        offset += cont;
-        r = r%50;
-    }
-    if(cont=r/10) {
-        if(i=cont>>2)   {
-            while(i>0)     {
-                memcpy(offset,"XL",2);
-                offset += 2;
-                i--;
-            }
-            cont = cont%4;
-        }
-        memset(offset,'X',cont);
-        offset += cont;
-        r = r%10;
-    }
-    if(cont=r/5)  {
-        if(i=cont>>2)  {
-            while(i>0)    {
-                memcpy(offset,"VX",2);
-                offset += 2;
-                i--;
-            }
-            cont = cont%4;
-        }
-        memset(offset,'V',cont);
-        offset += cont;
-        r = r%5;
-    }
-    if(r) {
-        if(i=r/4) {
-            while(i>0) {
-                memcpy(offset,"IV",2);
-                offset += 2;
-                i--;
-            }
-            r = r-4;
-        }
-        memset(offset,'I',r);
-        offset += r;
-    }
-    *offset = '\0';
-    std::cout<<rom<<std::endl;
+    
+    std::cout<<(ret + i + 1)<<std::endl;
 }
 
 
