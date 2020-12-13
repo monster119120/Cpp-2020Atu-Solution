@@ -9,7 +9,7 @@ protected:
     int size;
     int *data;
 public:
-    safeArray();
+    safeArray(int size);
     virtual int get(int index);
     virtual void set(int index, int value);
 };
@@ -19,14 +19,7 @@ protected:
     int lowBound;
     int highBound;
 public:
-    safeArrayWithBound(int low, int high):lowBound(low), highBound(high){
-        delete [] data;
-        data = new int [highBound*2];
-        for (int i = 0; i < highBound; ++i) {
-            data[i] = 0;
-        }
-        size = 0;
-    };
+    safeArrayWithBound(int size, int low, int high);
     int get(int index);
     void set(int index, int value);
 };

@@ -1,12 +1,7 @@
 #include "class.h"
 
-safeArray::safeArray() {
-    data = new int [10];
-    for (int i = 0; i < 10; ++i) {
-        data[i] = 0;
-    }
-    size = 10;
-}
+safeArrayWithBound::safeArrayWithBound(int size, int low, int high) : safeArray(size), lowBound(low), highBound(high) {
+};
 
 int safeArray::get(int index) {
     if (index >= size or index < 0) {
@@ -18,26 +13,19 @@ int safeArray::get(int index) {
 }
 
 void safeArray::set(int index, int value) {
-    if (index < 0){
-        cout<<"Index must not be less than 0!"<<endl;
-    }else if (index >= size) {
-        int* temp = data;
-        data = new int[2*index];
-
-        for (int i=0; i<size; i++){
-            data[i] = temp[i];
-        }
-        delete [] temp;
-
-        for (int i=size; i<index; i++){
-            data[i] = 0;
-        }
-
-        size =2*index;
-        data[index] = value;
+    if (index >= size or index < 0) {
+        cout<<"Index out of range!"<<endl;
     } else{
         data[index] = value;
     }
+}
+
+safeArray::safeArray(int size) {
+    data = new int [size];
+    for (int i = 0; i < size; ++i) {
+        data[i] = 0;
+    }
+    this->size = size;
 }
 
 int safeArrayWithBound::get(int index) {

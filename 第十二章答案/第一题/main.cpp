@@ -5,7 +5,9 @@ using namespace std;
 
 int main()
 {
-    safeArray a;
+    int size = 0;
+    cin>>size;
+    safeArray a(size);
 
     int setValue;
     int setIndex;
@@ -23,7 +25,9 @@ int main()
     int lowBound;
     int highBound;
     cin>>lowBound>>highBound;
-    safeArrayWithBound b(lowBound,highBound);
+
+    cin>>size;
+    safeArrayWithBound b(size, lowBound, highBound);
 
     for (int i=0;i<4;i++){
         cin>>setIndex>>setValue;
