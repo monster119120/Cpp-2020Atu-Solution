@@ -1,15 +1,16 @@
 #include "class.h"
 
-safeArrayWithBound::safeArrayWithBound(int size, int low, int high) : safeArray(size), lowBound(low), highBound(high) {
+safeArrayWithBound::safeArrayWithBound(int low, int high) : safeArray(high), lowBound(low), highBound(high) {
 };
 
-int safeArray::get(int index) {
+bool safeArray::get(int index, int& value) {
     if (index >= size or index < 0) {
         cout<<"Index out of range!"<<endl;
+        return false;
     } else{
-        return data[index];
+        value =  data[index];
+        return true;
     }
-    return -1;
 }
 
 void safeArray::set(int index, int value) {
@@ -28,13 +29,15 @@ safeArray::safeArray(int size) {
     this->size = size;
 }
 
-int safeArrayWithBound::get(int index) {
-    if (index >= highBound or index < lowBound or index < 0)
+bool safeArrayWithBound::get(int index, int& value) {
+    if (index >= highBound or index < lowBound or index < 0){
         cout<<"Index out of range!"<<endl;
-    else{
-        return data[index];
+        return false;
     }
-    return -1;
+    else{
+        value = data[index];
+        return true;
+    }
 }
 
 void safeArrayWithBound::set(int index, int value) {

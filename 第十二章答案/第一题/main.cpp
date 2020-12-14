@@ -17,17 +17,19 @@ int main()
     }
 
     int getIndex;
+    int getValue;
     for (int i = 0; i <4 ; ++i) {
         cin>>getIndex;
-        cout<<a.get(getIndex)<<endl;
+
+        if (a.get(getIndex,getValue))
+        cout<<getValue<<endl;
     }
 
     int lowBound;
     int highBound;
     cin>>lowBound>>highBound;
 
-    cin>>size;
-    safeArrayWithBound b(size, lowBound, highBound);
+    safeArrayWithBound b(lowBound, highBound);
 
     for (int i=0;i<4;i++){
         cin>>setIndex>>setValue;
@@ -36,7 +38,8 @@ int main()
 
     for (int i = 0; i <4 ; ++i) {
         cin>>getIndex;
-        cout<<b.get(getIndex)<<endl;
+        if (b.get(getIndex, getValue))
+            cout<<getValue<<endl;
     }
 
     return 0;

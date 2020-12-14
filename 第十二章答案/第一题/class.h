@@ -10,7 +10,7 @@ protected:
     int *data;
 public:
     safeArray(int size);
-    virtual int get(int index);
+    virtual bool get(int index, int& value);
     virtual void set(int index, int value);
 };
 
@@ -19,8 +19,8 @@ protected:
     int lowBound;
     int highBound;
 public:
-    safeArrayWithBound(int size, int low, int high);
-    int get(int index);
+    safeArrayWithBound(int low, int high);
+    bool get(int index, int& value);
     void set(int index, int value);
 };
 
